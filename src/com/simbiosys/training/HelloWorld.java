@@ -1,0 +1,27 @@
+package com.simbiosys.training;
+
+import java.util.Scanner;
+
+public class HelloWorld {
+
+	public static void floydsTriangle(int n) {
+		int num = 1;
+		
+		for (int i = 1; i <= n; i++) {
+			for (int j = 0; j < i; j++) {
+				System.out.print(num++);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number of level: ");
+		int n = sc.nextInt();
+		floydsTriangle(n);
+		sc.close();
+	}
+
+}
