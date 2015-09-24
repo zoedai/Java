@@ -1,6 +1,7 @@
 package com.simbiosys.training;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Assignment1 {
 
@@ -8,6 +9,30 @@ public class Assignment1 {
 		return !weekday || vacation;
 	}
 	
+	public static void chooseAnswer() {
+		System.out.print("What is the correct way to declare"
+				+ "a variable to store an integer value in Java?\n"
+				+ "a. int 1x=10;\n"
+				+ "b. int x=10\n;"
+				+ "c. float x=10.0f;\n"
+				+ "d. string x=\"10\";\n"
+				+ "Enter your choice: ");
+		
+		Scanner sc = new Scanner(System.in);
+		
+		while (sc.hasNext()) {
+			
+			String ans = sc.next();
+			if (ans.equals("b") || ans.equals("B")) {
+				System.out.println("Correct!");
+				break;
+			} else {
+				System.out.println("Please try again.");
+			}
+		}
+		
+		sc.close();
+	}
 	public static void getGrade(int quiz, int mid, int fin) {
 		int average = (quiz + mid + fin) / 3;
 		String grade;
@@ -57,48 +82,47 @@ public class Assignment1 {
 		}
 		
 		
-		boolean leftCorner = array[0][0] == 0;
+		boolean[] cols = new boolean[array[0].length];
+		boolean[] rows = new boolean[array.length];
 		
 		// store the 0 information in the first row and first column
 		
-		for (int i = 1; i < array.length; i++) {
-			for (int j = 1; j < array[0].length; j++) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[0].length; j++) {
 				if (array[i][j] == 0) {
-					array[0][j] = 0;
-					array[i][0] = 0;
+					cols[j] = true;
+					if (i + 1 < array.length) {
+						rows[i + 1] = true;
+					}
 				}
 			}
 		}
 		
 		// fill rows
 		for (int i = 1; i < array.length; i++) {
-			if (array[i][0] == 0) {
+			if (rows[i]) {
 				Arrays.fill(array[i], 0);
 			}
 		}
 		
 		// fill columns
 		for (int j = 1; j < array[0].length; j++) {
-			if (array[0][j] == 0) {
+			if (cols[j]) {
 				for (int i = 0; i < array.length; i++) {
 					array[i][j] = 0;
 				}
 			}
 		}
 		
-		// if the first one is zero
-		if (leftCorner) {
-			for (int i = 0; i < array.length; i++) {
-				array[i][0] = 0;
-			}
-			
-			Arrays.fill(array[0], 1);
-		}
 		
 	}
 	public static void main(String[] args) {
 		// 6
 //		System.out.println(sleepIn(false, true));
+		
+		// 7
+		
+		chooseAnswer();
 		
 		// 8
 		
@@ -110,10 +134,10 @@ public class Assignment1 {
 		
 		//10
 		
-		printChar();
+//		printChar();
 		
 		//11
-		int[][] array = {{2,5,8,4},
+/*		int[][] array = {{2,5,8,4},
 				{7,6,3,4},
 				{4,7,0,2},
 				{1,1,1,1}};
@@ -129,6 +153,9 @@ public class Assignment1 {
 		for (int[] a : array) {
 			System.out.println(Arrays.toString(a));
 		}
+		*/
 	}
+	
+
 
 }
